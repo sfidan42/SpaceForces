@@ -102,7 +102,18 @@ void SpriteAnimator::draw(int x, int y) {
 	if(currentanim) {
 		gImage* currentframe = currentanim->getCurrentFrame();
 		if(currentframe) {
-			currentframe->draw(x, y);
+			currentframe->draw(x - currentframe->getWidth() / 2, y - currentframe->getHeight() / 2);
+		}
+
+	}
+}
+
+void SpriteAnimator::draw(int x, int y, float rotation){
+	if(currentanim) {
+		gImage* currentframe = currentanim->getCurrentFrame();
+		if(currentframe) {
+			currentframe->draw(x - currentframe->getWidth() / 2, y - currentframe->getHeight() / 2,
+					currentframe->getWidth(), currentframe->getHeight(), rotation);
 		}
 
 	}

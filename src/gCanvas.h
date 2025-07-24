@@ -16,6 +16,7 @@
 class Ship {
 public:
 	int x,y;
+	float rotation;
 	SpriteAnimator animator;
 
 };
@@ -52,6 +53,7 @@ private:
 		MAX_PLAYER_NUM   //2
 	};
 	enum PlatformPos{
+		PLATFORM_NONE = -1,
 		PLATFORM_TOP,    //0
 		PLATFORM_MIDDLE, //1
 		PLATFORM_BOTTOM, //2
@@ -65,10 +67,12 @@ private:
 	gImage ship1, ship2, ship3, ship4;
 	gImage platform;
 	AnimationFrames ship1frames;
+	AnimationFrames selectionframes;
 	std::vector<Ship*> activeships;
 	int platformx[MAX_PLAYER_NUM][MAX_PLATFORM_NUM];
 	int platformy[MAX_PLAYER_NUM][MAX_PLATFORM_NUM];
-
+	PlatformPos selectedplatform;
+    SpriteAnimator selectionanimator;
 };
 
 #endif /* GCANVAS_H_ */
