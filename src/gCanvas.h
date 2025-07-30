@@ -15,10 +15,19 @@
 
 class Ship {
 public:
-	int x,y;
+	float x,y;
 	float rotation;
+	float speed;
+	float shoottimer;
+	float health;
 	SpriteAnimator animator;
+};
 
+class Bullet {
+public:
+	float x,y;
+	float rotation;
+	float speed;
 };
 
 class gCanvas : public gBaseCanvas {
@@ -61,14 +70,20 @@ private:
 	};
 	void addShip(AnimationFrames* frames, PlayerType playertype,
 			PlatformPos platformpos);
+	void addBullet(float x, float y, float speed, PlayerType playertype);
+	void updateShip(Ship* ship, PlayerType playertype, float deltaTime);
 
 	gApp* root;
 	gImage map;
 	gImage ship1, ship2, ship3, ship4;
 	gImage platform;
+	gImage humanbullet, aibullet;
+	std::vector<Bullet *> humanbullets, aibullets;
 	AnimationFrames ship1frames;
 	AnimationFrames selectionframes;
-	std::vector<Ship*> activeships;
+	std::vector<Ship*> activehumanships;
+	std::vector<Ship*> activeaiships;
+	float humanshipxlimit, aishipxlimit;
 	int platformx[MAX_PLAYER_NUM][MAX_PLATFORM_NUM];
 	int platformy[MAX_PLAYER_NUM][MAX_PLATFORM_NUM];
 	PlatformPos selectedplatform;
